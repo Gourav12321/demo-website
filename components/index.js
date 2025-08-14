@@ -1,0 +1,9 @@
+export { default as Header } from "./Header";
+export { default as HeroSection } from "./HeroSection";
+export { default as ServicesSection } from "./ServicesSection";
+export { default as ServiceCard } from "./ServiceCard";
+export { default as WorkSection } from "./WorkSection";
+export { default as FAQSection } from "./FAQSection";
+export { default as FAQItem } from "./FAQItem";
+export { default as ContactSection } from "./ContactSection";
+export { default as Footer } from "./Footer";
