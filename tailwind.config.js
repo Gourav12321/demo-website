@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        raleway: ["Raleway", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
+        raleway: ["var(--font-raleway)", "sans-serif"],
       },
       animation: {
         slideInRight: "slideInRight 0.4s ease-out forwards",
