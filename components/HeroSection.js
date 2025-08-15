@@ -1,19 +1,19 @@
+import Image from "next/image";
+
 const HeroSection = () => {
   return (
-    <section className="relative h-screen">
-      {/* Background decorative elements */}
-
-      <div className="absolute h-full w-full overflow-hidden z-0">
-        <img
-          src="mainBanner/mask_group.png"
+    <section className="relative min-h-screen flex items-center justify-center overflow-visible">
+      <div className="absolute lg:top-0 lg:h-[150%] h-full w-full overflow-visible z-10 justify-center items-center flex ">
+        <Image
+          src="/mainBanner/mask_group.png"
           alt="Mask_group"
-          className="object-contain"
-          //   style={{ filter: "blur(00.0px)" }}
+          className="object-cover object-top"
+          fill
         />
       </div>
 
       {/* Hero content */}
-      <div className="flex flex-col items-center justify-center h-full text-center relative z-10">
+      <div className="flex flex-col items-center justify-center h-full text-center relative z-20">
         <h1
           className="text-[rgba(37,36,50,1.00)] text-[73.34px] font-bold leading-[100%] max-w-[764px]"
           style={{ fontFamily: "Raleway" }}

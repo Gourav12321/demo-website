@@ -6,6 +6,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSignUpMode, setIsSignUpMode] = useState(true);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -44,8 +45,12 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleAuthMode = () => {
+    setIsSignUpMode(!isSignUpMode);
+  };
+
   const menuItems = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "#" },
     { name: "About", href: "#about" },
     { name: "How it Works", href: "#how-it-works" },
     { name: "Services", href: "#services" },
@@ -87,18 +92,26 @@ const Header = () => {
           {/* Desktop Auth buttons */}
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
             <span
-              className="text-[#8987a1] text-base font-normal opacity-80 cursor-pointer hover:opacity-100 transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded"
+              onClick={toggleAuthMode}
+              className={`text-base font-normal cursor-pointer transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded ${
+                isSignUpMode
+                  ? "text-[#8987a1] opacity-80 hover:opacity-100"
+                  : "text-white bg-[#4d47ff] hover:bg-[#3d37ef] h-12 px-6 rounded-[10px] flex items-center justify-center shadow-md hover:shadow-lg font-bold relative overflow-hidden before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:transition-all before:duration-500 hover:before:left-full"
+              }`}
               style={{ fontFamily: "Raleway" }}
             >
               Sign In
             </span>
-            <button className="relative overflow-hidden bg-[#4d47ff] h-12 px-6 rounded-[10px] flex items-center justify-center hover:bg-[#3d37ef] transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:transition-all before:duration-500 hover:before:left-full">
-              <span
-                className="text-white text-base font-bold"
-                style={{ fontFamily: "Raleway" }}
-              >
-                Sign Up
-              </span>
+            <button
+              onClick={toggleAuthMode}
+              className={`text-base transition-all duration-300 transform hover:scale-105 focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded ${
+                isSignUpMode
+                  ? "relative overflow-hidden bg-[#4d47ff] h-12 px-6 rounded-[10px] flex items-center justify-center hover:bg-[#3d37ef] shadow-md hover:shadow-lg font-bold text-white before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:transition-all before:duration-500 hover:before:left-full"
+                  : "text-[#8987a1] font-normal opacity-80 hover:opacity-100"
+              }`}
+              style={{ fontFamily: "Raleway" }}
+            >
+              Sign Up
             </button>
           </div>
 
@@ -142,7 +155,6 @@ const Header = () => {
           isMobileMenuOpen ? "visible" : "invisible"
         } lg:hidden`}
       >
-        {/* Backdrop */}
         <div
           className={`absolute inset-0 bg-black backdrop-blur transition-all duration-300 ${
             isMobileMenuOpen ? "opacity-50" : "opacity-0"
@@ -150,13 +162,11 @@ const Header = () => {
           onClick={toggleMobileMenu}
         />
 
-        {/* Sidebar */}
         <div
           className={`absolute top-0 right-0 h-full w-80 sm:w-96 bg-gradient-to-br from-white to-[#fbf6f8] transform transition-all duration-500 ease-out shadow-[-10px_0_25px_rgba(0,0,0,0.1)] ${
             isMobileMenuOpen ? "translate-x-0 shadow-2xl" : "translate-x-full"
           }`}
         >
-          {/* Sidebar Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-100">
             <img
               src="assets/images/logo.svg"
@@ -184,7 +194,6 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Navigation Links */}
           <nav className="py-8">
             {menuItems.map((item, index) => (
               <a
@@ -207,7 +216,6 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Auth Buttons in Sidebar */}
           <div
             className={`absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-gradient-to-r from-[#fbf6f8] to-[#f8f3f6] ${
               isMobileMenuOpen ? "animate-fadeInScale" : ""
@@ -215,18 +223,26 @@ const Header = () => {
           >
             <div className="flex flex-col gap-4">
               <button
-                className="w-full py-3 text-[#8987a1] text-lg font-normal hover:text-[#252432] transition-all duration-300 transform hover:scale-105 focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded"
+                onClick={toggleAuthMode}
+                className={`w-full py-3 text-lg transition-all duration-300 transform hover:scale-105 focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded ${
+                  isSignUpMode
+                    ? "text-[#8987a1] font-normal hover:text-[#252432]"
+                    : "bg-gradient-to-r from-[#4d47ff] to-[#3d37ef] hover:from-[#3d37ef] hover:to-[#2d27df] shadow-lg hover:shadow-xl rounded-[10px] text-white font-bold"
+                }`}
                 style={{ fontFamily: "Raleway" }}
               >
                 Sign In
               </button>
-              <button className="w-full bg-gradient-to-r from-[#4d47ff] to-[#3d37ef] py-3 rounded-[10px] hover:from-[#3d37ef] hover:to-[#2d27df] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded">
-                <span
-                  className="text-white text-lg font-bold"
-                  style={{ fontFamily: "Raleway" }}
-                >
-                  Sign Up
-                </span>
+              <button
+                onClick={toggleAuthMode}
+                className={`w-full py-3 text-lg transition-all duration-300 transform hover:scale-105 focus:outline-2 focus:outline-[#4d47ff] focus:outline-offset-2 focus:rounded ${
+                  isSignUpMode
+                    ? "bg-gradient-to-r from-[#4d47ff] to-[#3d37ef] hover:from-[#3d37ef] hover:to-[#2d27df] shadow-lg hover:shadow-xl rounded-[10px] text-white font-bold"
+                    : "text-[#8987a1] font-normal hover:text-[#252432]"
+                }`}
+                style={{ fontFamily: "Raleway" }}
+              >
+                Sign Up
               </button>
             </div>
           </div>
